@@ -1,0 +1,169 @@
+{
+  "main": {
+    "id": "0d9e8fdcdaa14ecb",
+    "type": "split",
+    "children": [
+      {
+        "id": "6711ae59eceeadbc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "afc27a3c674a590d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "assignment/assignment-1-meng-chi-lee.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7fb41088e63f8c6a",
+    "type": "split",
+    "children": [
+      {
+        "id": "cf4b1e70d0dd76b0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1560a5bb398bbe17",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e57ff4bf109aac2c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9d749735976f07b8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7756ff3d8402345a",
+    "type": "split",
+    "children": [
+      {
+        "id": "3c388f3a51be56d2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5fee7426e88d2bd3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "assignment/assignment-1-meng-chi-lee.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "109dbc32ef6f6c8e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "assignment/assignment-1-meng-chi-lee.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1b833259ee59fc68",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "46080420172920fd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "assignment/assignment-1-meng-chi-lee.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "1560a5bb398bbe17",
+  "lastOpenFiles": [
+    "New folder",
+    "yaml.md",
+    "assignment/assignment-1-meng-chi-lee.md",
+    "assignment/images/Pasted image 20240923232532.png",
+    "assignment/images",
+    "Welcome.md",
+    "images/Pasted image 20240921175355.png",
+    "images",
+    "assignment/images/Pasted image 20240921175151.png",
+    "assignment/images/Pasted image 20240921175133.png",
+    "assignment/images/Pasted image 20240921175132.png",
+    "assignment/Pasted image 20240921174637.png",
+    "images/Pasted image 20240921173336.png",
+    "Pasted image 20240921173308.png",
+    "images/Pasted image 20240921173249 2.png",
+    "images/Pasted image 20240921173249 1.png",
+    "assignment"
+  ]
+}
