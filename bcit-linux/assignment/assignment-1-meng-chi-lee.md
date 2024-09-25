@@ -90,20 +90,96 @@ doctl compute ssh-key import do-key --public-key-file ~/.ssh/do-key.pub
 doctl compute ssh-key list
 ```
 
-5. Install neovim
+# Create a cloud-config.yaml file
+1. Install neovim
 ```powershell
 sudo pacman -S neovim
 ```
 
-6. Create a cloud-config.yaml file
+2. Create a cloud-config.yaml file
+```powershell
+nvim cloud-config.yaml
+```
+
+```powershell
+#cloud-config
+users:
+  - name: user-name #change me
+    primary_group: group-name #change me
+    groups: wheel
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-ed25519 ... #public key here
+
+packages:
+  - ripgrep
+  - rsync
+  - neovim
+  - fd
+  - less
+  - man-db
+  - bash-completion
+  - tmux
+  - doctl
+
+disable_root: true
+
+```
 
 # Create a Droplet Using the CLI
 [reference](https://docs.digitalocean.com/products/droplets/how-to/create/)
 
 [How to select the region](https://www.digitalocean.com/blog/choosing-a-data-center-location)
 
+1. Confirm the ID of your image ID
+```powershell
+doctl compute image list 
+```
+Find the one we uploaded for arch linux and copy the ID, which is 165086895 in this case
+![[Pasted image 20240924185154.png]]
+2. Confirm the ID of your public key
+```bash
+doctl compute ssh-key list
+```
+Find the one we uploaded before and going to use, which is 43494133 in this case
+![[Pasted image 20240924192047.png]]
 
-# Automate Droplet with Cloud-init
+4. Create a droplet
+```powershell
+doctl compute droplet create --image 165086895 --size s-1vcpu-1gb-amd --region sfo3 --ssh-keys 43494133 --user-data-file ~/.ssh/cloud-config.yaml --wait as1-test
+
+```
+
+
+# Create a config file to automate build the connection to the new droplet
 [reference](https://docs.digitalocean.com/products/droplets/how-to/automate-setup-with-cloud-init/)
+
+1. cd to ~/.ssh
+2. Create a config file
+```bash
+nvim config
+```
+3. Copy and paste the config content
+```
+Host art1-test1
+
+  HostName 164.92.71.207
+
+  User arch
+
+  PreferredAuthentications publickey
+
+  IdentityFile ~/.ssh/ar1-key
+
+  StrictHostKeyChecking no
+
+  UserKnownHostsFile /dev/null
+```
+
+4. Test the connection
+```bash
+ssh ast1-test1
+```
 
 
