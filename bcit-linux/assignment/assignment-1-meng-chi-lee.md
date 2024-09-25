@@ -24,17 +24,16 @@ sudo pacman -Sy wget
 pacman -Qi wget
 ```
 
-4. Run your terminal as Administrator
-5. Download the doctl by using code below:
+3. Download the doctl by using code below:
    ```powershell
 cd ~
 wget https://github.com/digitalocean/doctl/releases/download/v1.110.0/doctl-1.110.0-linux-amd64.tar.gz
 	```
-3. Extract the binary:
+4. Extract the binary:
    ```powershell
 tar xf ~/doctl-1.110.0-linux-amd64.tar.gz
 	```
-4. Move the doctl binary into a dedicated directory and add it to your system’s path by running:
+5. Move the doctl binary into a dedicated directory and add it to your system’s path by running:
    ```powershell
 sudo mv ~/doctl /usr/local/bin
 	```
