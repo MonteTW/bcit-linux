@@ -9,34 +9,25 @@
 5. Choose **Full Access** for the Scopes
 6. Click **Generate Token**
 7. Copy the token shown on screen, it will be shown only once
-8. Save the token in a empty text file in .ssh directory 
+8. Save the token in an empty text file at somewhere handy
 
-# Install ```doctl```
+# Install `doctl`
 [reference](https://docs.digitalocean.com/reference/doctl/how-to/install/)
-
-1. Install ```wget```
-   ```bash
-sudo pacman -Sy wget
-```
-
-2. Check if ```wget``` is installed and print more information about the tool run
+1. update your Arch Linux system
 ```bash
-pacman -Qi wget
+sudo pacman -Syu
 ```
 
-3. Download the ```doctl``` by using code below:
-   ```bash
-cd ~
-wget https://github.com/digitalocean/doctl/releases/download/v1.110.0/doctl-1.110.0-linux-amd64.tar.gz
-	```
-4. Extract the binary:
-   ```bash
-tar xf ~/doctl-1.110.0-linux-amd64.tar.gz
-	```
-5. Move the ```doctl``` binary into a dedicated directory and add it to your system’s path by running:
-   ```bash
-sudo mv ~/doctl /usr/local/bin
-	```
+2. Download `doctl`
+```bash
+sudo pacman -Sy doctl
+```
+- `sudo` runs the command with administrative privileges.
+- `pacman` is the package manager for Arch Linux.
+- `-Syu` performs a **full system upgrade**:
+    - `S` synchronizes the package databases.
+    - `y` refreshes the package databases.
+    - `u` upgrades all installed packages to their latest versions.
 
 # Use the API token to grant account access to ```doctl```
 1. Use the API token to grant ```doctl``` access to your DigitalOcean account, give this authentication context a name. 
@@ -192,4 +183,5 @@ ssh ast1-test1
 ```
 
 
-# Source
+# Reference
+
