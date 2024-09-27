@@ -1,27 +1,27 @@
 
 # Create an API Token
-1. login to digitalocean control panel.
-2. click API in the left menu.
-3. Click **Generate New Token** in the Personal access tokens section.
-4. Type in the name of the token and select 90 days expiration.
-5. Choose **Full Access** for the Scopes.
-6. Click **Generate Token.**
-7. Copy the token shown on screen, it will be shown only once.
-8. Save the token in an empty text file at somewhere handy.
+What is API token and why? [@123]
+2. Login to digitalocean control panel.
+3. Click API in the left menu.
+4. Click **Generate New Token** in the Personal access tokens section.
+5. Type in the name of the token and select 90 days expiration.
+6. Choose **Full Access** for the Scopes.
+7. Click **Generate Token.**
+8. Copy the token shown on screen, it will be shown only once.
+9. Save the token in an empty text file at somewhere handy.
 
 # Install `doctl`
-`doctl` allows you to interact with the DigitalOcean API via the command line.
+`doctl` allows you to interact with the DigitalOcean API via the command line. It is a must to install `doctl` on your droplet
 
-1. update your Arch Linux system
+1. Update your Arch Linux system
 ```bash
 sudo pacman -Syu
 ```
-- `sudo` runs the command with administrative privileges.
+- `sudo` runs the command as an administrator.
 - `pacman` is the package manager for Arch Linux.
-- `-Syu` performs a full system upgrade:
-    - `S` synchronizes the package databases.
-    - `y` refreshes the package databases.
-    - `u` upgrades all installed packages to their latest versions.
+- `S` synchronizes the package.
+- `y` refreshes the package databases.
+- `u` upgrades all installed packages to latest versions.
 
 2. Download `doctl` package
 ```bash
@@ -55,7 +55,7 @@ sudo pacman -Sy doctl
    ```bash
    doctl compute droplet create --region sfo3 --image aapanel --size s-1vcpu-1gb droplet-test
 	```
-- it is just for testing, we will go through the detail in the later steps
+- It is just for testing, we will go through the detail in the later steps
 
 > **Note:** Output should see a table like below
 > ![](./images/Pasted%20image%2020240926202709.png)
@@ -71,7 +71,7 @@ sudo pacman -Sy doctl
 	```
 
 # Create SSH
-1. create SSH key
+1. Create SSH key
 ```bash
 ssh-keygen -t ed25519 -f ~/.ssh/do-key -C "your email address"
 ```
@@ -80,14 +80,14 @@ ssh-keygen -t ed25519 -f ~/.ssh/do-key -C "your email address"
 - `-f ~/.ssh/your-key-name` is saying the name and the path of your key should be.
 - `-C "your email address"` changes the comment of the SSH key, the comment will be included in the key.
 
-1. get your public key
+1. Get your public key
 ```bash
 cat ~/.ssh/do-key.pub 
 # please change "do-key.pub" to your public key name
 # or if you store your ssh key in another folder please change the path
 ```
 
-copy the public key printed on screen
+- Copy the public key printed on screen including your email address
 
 3. Upload the public key to Digitalocean 
 ```bash
@@ -113,7 +113,7 @@ sudo pacman -S neovim
 nvim your-file-name.yaml # please change the name
 ```
 
-3. paste in the following context into the yaml file
+3. Paste in the following context into your yaml file
 ```bash
 #cloud-config
 users:
@@ -184,7 +184,7 @@ doctl compute droplet create --image your-image-id --size s-1vcpu-1gb-amd --regi
 
 - `--ssh-keys` is the tag referring the SSH key you want to use to connect the droplet, add SSH ID behind.
 - `--user-data-file`  is the tag referring the yaml file you want to use to configure your new droplets, add the file path of your yaml file behind.
-- `--wait` Tells `doctl` to wait for the Droplets to finish deployment before accepting new commands. Add 
+- `--wait` Tells `doctl` to wait for the Droplets to finish deployment before accepting new commands.
 - `new-droplet-name1` add the new droplet names to the end of the command line. If you want to create multiple droplets just add many different droplet names behind.
 
 # Create a config file to automate build the connection to the new droplet
@@ -211,15 +211,15 @@ Host name-anything # change it to the name you want to call
   UserKnownHostsFile /dev/**null******
 ```
 
-4. Test the connection
+4. Test the connection[^1]
 ```bash
 ssh name-anything # name-anything is the one you named in the config file
 ```
-
+something random [^1]
 
 # Reference
 
-- DigitalOcean. (n.d.). **doctl**. DigitalOcean Documentation. [https://docs.digitalocean.com/reference/doctl/](https://docs.digitalocean.com/reference/doctl/)
+- [^1]: DigitalOcean. (n.d.). **doctl**. DigitalOcean Documentation. [https://docs.digitalocean.com/reference/doctl/](https://docs.digitalocean.com/reference/doctl/)
     
 - DigitalOcean. (n.d.). **Installing doctl**. GitHub. [https://github.com/digitalocean/doctl?tab=readme-ov-file#installing-doctl](https://github.com/digitalocean/doctl?tab=readme-ov-file#installing-doctl)
     
@@ -238,3 +238,5 @@ ssh name-anything # name-anything is the one you named in the config file
 - DigitalOcean. (n.d.). **Automate setup with cloud-init**. DigitalOcean Documentation. [https://docs.digitalocean.com/products/droplets/how-to/automate-setup-with-cloud-init/](https://docs.digitalocean.com/products/droplets/how-to/automate-setup-with-cloud-init/)
     
 - DigitalOcean. (2020, August 17). **Choosing a data center location**. DigitalOcean Blog. [https://www.digitalocean.com/blog/choosing-a-data-center-location](https://www.digitalocean.com/blog/choosing-a-data-center-location)
+
+
