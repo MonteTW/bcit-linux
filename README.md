@@ -33,7 +33,8 @@ sudo pacman -Sy doctl
 ```bash
    doctl auth init
 ```
-`doctl auth init`: After the command you will be asked to type in your DigitalOcean API token.
+- `doctl auth init`: After the command you will be asked to type in your DigitalOcean API token.
+  
 4. Pass in the token string you saved from Digitalocean when prompted by `doctl auth init`
    
 5. Restart your terminal.
@@ -47,8 +48,7 @@ sudo pacman -Sy doctl
 - `get`: This is the action or sub-command. It fetches or retrieves the information associated with the `account` resource, displaying key details about your account.
 
 
-> [!NOTE] Output 
-> should see a table like below
+> **Note:** Output should see a table like below
 > ![](./images/Pasted%20image%2020240923232532.png) 
 
 5. To confirm the connection, can create a test droplet as follow
@@ -57,8 +57,7 @@ sudo pacman -Sy doctl
 	```
 - it is just for testing, we will go through the detail in the later steps
 
-> [!NOTE] Output 
-> should see a table like below
+> **Note:** Output should see a table like below
 > ![](./images/Pasted%20image%2020240926202709.png)
 
 6. Check if the droplet created successfully and copy the ID of the test droplet
@@ -153,7 +152,7 @@ disable_root: true
 - **ssh-authorized-keys:**  Optional. Add keys to user's authorized keys file. An error will be raised if no_create_home or system is also set.
 - **disable_root:** Set it to `true`. To prevent hackers hack into the server through root user.
 
-> [!NOTE]
+> **Note:** 
 > Please watch out the space of your yaml file, it might cause an error if there's any extra space in the file
 # Create a Droplet 
 
@@ -161,15 +160,15 @@ disable_root: true
 ```bash
 doctl compute image list 
 ```
-> [!NOTE] Look for the one you uploaded
-> Find the one we uploaded for arch linux and copy the ID, which is **165086895** in this case
+> **Note:** 
+> Find the image we uploaded for arch linux and copy the ID, which is **165086895** in this case
 > ![](./images/Pasted%20image%2020240924185154.png)
 2. Confirm the ID of your public key
 ```bash
 doctl compute ssh-key list
 ```
-> [!NOTE] Find your public key
-> Find the one we uploaded before and going to use, which is **43494133** in this case
+> **Note:** 
+> Find your public key uploaded before and going to use, which is **43494133** in this case
 > ![](./images/Pasted%20image%2020240924192047.png)
 
 3. Create a droplet
