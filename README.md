@@ -35,31 +35,31 @@ sudo pacman -Sy doctl
 ```
 `doctl auth init`: After the command you will be asked to type in your DigitalOcean API token.
 4. Pass in the token string you saved from Digitalocean when prompted by `doctl auth init`
+   
 5. Restart your terminal.
+   
 6. Validate that `doctl` is working, the command line will show the information of your account you linked.
    ```bash
    doctl account get
    ```
 - `doctl` allows you to interact with DigitalOcean resources like, Droplets, from your terminal.
-    
 - `account`: This is referring to the DigitalOcean account you are authenticated with. It deals with account-level information, such as your email, API token usage, droplet limits, and account status.
-    
 - `get`: This is the action or sub-command. It fetches or retrieves the information associated with the `account` resource, displaying key details about your account.
 
 
-> [! NOTE] Output 
+> [!NOTE] Output 
 > should see a table like below
-![[./images/Pasted image 20240923232532.png]] 
+> ![](./images/Pasted%20image%2020240923232532.png) 
 
 5. To confirm the connection, can create a test droplet as follow
    ```bash
    doctl compute droplet create --region sfo3 --image aapanel --size s-1vcpu-1gb droplet-test
 	```
-it is just for testing, we will go through the detail in the later steps
+- it is just for testing, we will go through the detail in the later steps
 
-> [! NOTE] Output 
->  should see a table like below
->   ![[./images/Pasted image 20240926202709.png]]
+> [!NOTE] Output 
+> should see a table like below
+> ![](./images/Pasted%20image%2020240926202709.png)
 
 6. Check if the droplet created successfully and copy the ID of the test droplet
    ```bash
@@ -76,10 +76,10 @@ it is just for testing, we will go through the detail in the later steps
 ```bash
 ssh-keygen -t ed25519 -f ~/.ssh/do-key -C "your email address"
 ```
-`ssh-keygen` is a tool for creating new authentication key pairs for SSH.
-`-t ed2219` is saying the type of key to be created. `ed25519` is a modern, highly secure public-key cryptographic system, which is considered more secure than older key types like RSA.
-`-f ~/.ssh/your-key-name` is saying the name and the path of your key should be.
-`-C "your email address"` changes the comment of the SSH key, the comment will be included in the key.
+- `ssh-keygen` is a tool for creating new authentication key pairs for SSH.
+- `-t ed2219` is saying the type of key to be created. `ed25519` is a modern, highly secure public-key cryptographic system, which is considered more secure than older key types like RSA.
+- `-f ~/.ssh/your-key-name` is saying the name and the path of your key should be.
+- `-C "your email address"` changes the comment of the SSH key, the comment will be included in the key.
 
 1. get your public key
 ```bash
@@ -94,9 +94,9 @@ copy the public key printed on screen
 ```bash
 doctl compute ssh-key import do-key --public-key-file ~/.ssh/do-key.pub
 ```
-`doctl compute ssh-key import do-key` Import an SSH key from your computer to your account.
-`--public-key-file` the flag is required to refer the public key file.
-`~/.ssh/do-key.pub` the path of your public key file.
+- `doctl compute ssh-key import do-key` Import an SSH key from your computer to your account.
+- `--public-key-file` the flag is required to refer the public key file.
+- `~/.ssh/do-key.pub` the path of your public key file.
 
 4. Check the import succeeded
 ```bash
@@ -140,62 +140,55 @@ packages:
 disable_root: true
 
 ```
- Press **i** to switch to insert mode
- Press Esc to cancel insert mode
- `:w` save the file
- `:q` close this window
- `:wq` save the file then close the window 
- 
-**users.name:** should match the username of your Digitalocean user name, likely to be **arch**.
-**users.primary_group:** is like a tag. Define the primary group. Defaults to a new group created name after the user.
-**users.groups:** Optional. Additional groups to add the user to. Defaults to none.
-**packages:** are the modules you want the new droplets to install while they created.
-**sudo:** Defaults to none. Accepts a sudo rule string, a list of sudo rule strings or False to explicitly deny sudo usage.
-**ssh-authorized-keys:**  Optional. Add keys to user's authorized keys file. An error will be raised if no_create_home or system is also set.
-**disable_root:** Set it to `true`. To prevent hackers hack into the server through root user.
+- Press **i** to switch to insert mode
+- Press Esc to cancel insert mode
+- `:w` save the file
+- `:q` close this window
+- `:wq` save the file then close the window 
+ - **users.name:** should match the username of your Digitalocean user name, likely to be **arch**.
+- **users.primary_group:** is like a tag. Define the primary group. Defaults to a new group created name after the user.
+- **users.groups:** Optional. Additional groups to add the user to. Defaults to none.
+- **packages:** are the modules you want the new droplets to install while they created.
+- **sudo:** Defaults to none. Accepts a sudo rule string, a list of sudo rule strings or False to explicitly deny sudo usage.
+- **ssh-authorized-keys:**  Optional. Add keys to user's authorized keys file. An error will be raised if no_create_home or system is also set.
+- **disable_root:** Set it to `true`. To prevent hackers hack into the server through root user.
 
-> [! NOTE]
->  Please watch out the space of your yaml file, it might cause an error if there's any extra space in the file
+> [!NOTE]
+> Please watch out the space of your yaml file, it might cause an error if there's any extra space in the file
 # Create a Droplet 
-[reference](https://docs.digitalocean.com/products/droplets/how-to/create/)
-
-[How to select the region](https://www.digitalocean.com/blog/choosing-a-data-center-location)
 
 1. Confirm the ID of your image ID
 ```bash
 doctl compute image list 
 ```
-> [! NOTE] Look for the one you uploaded
+> [!NOTE] Look for the one you uploaded
 > Find the one we uploaded for arch linux and copy the ID, which is **165086895** in this case
-![[./images/Pasted image 20240924185154.png]]
+> ![](./images/Pasted%20image%2020240924185154.png)
 2. Confirm the ID of your public key
 ```bash
 doctl compute ssh-key list
 ```
-> [! NOTE] Find your public key
+> [!NOTE] Find your public key
 > Find the one we uploaded before and going to use, which is **43494133** in this case
-![[./images/Pasted image 20240924192047.png]]
+> ![](./images/Pasted%20image%2020240924192047.png)
 
-4. Create a droplet
+3. Create a droplet
 ```bash
 doctl compute droplet create --image your-image-id --size s-1vcpu-1gb-amd --region sfo3 --ssh-keys 43494133 --user-data-file ~/.ssh/your-file-name.yaml --wait new-droplet-name1 new-droplet-name2 new-droplet-name3
-
 ```
-`doctl compute droplet create` is the command to create droplet.
-`--image` is the tag referring the image you want to use and decide your OS system, should type image ID behind the tag.
-`--size` is the tag  referring the server's size of the CPU, and the CPU option. Can use `doctl compute size list` to find to one you want. We use `s-1vcpu-1gb-amd` which is using basic > 1 AMD CPU for 1 GB.
-`--region` is the server's region and datacenter. We should choose the one that is near to the end users to reduce latency. use `doctl compute region list` to check what datacenters are available. Since we are our own end users, we choose San Francisco, which is the nearest region to us. `sfo1` is not available at the moment, so we can use `sfo2` or `sfo3`.
+- `doctl compute droplet create` is the command to create droplet.
+- `--image` is the tag referring the image you want to use and decide your OS system, should type image ID behind the tag.
+- `--size` is the tag  referring the server's size of the CPU, and the CPU option. Can use `doctl compute size list` to find to one you want. We use `s-1vcpu-1gb-amd` which is using basic > 1 AMD CPU for 1 GB.
+- `--region` is the server's region and datacenter. We should choose the one that is near to the end users to reduce latency. use `doctl compute region list` to check what datacenters are available. Since we are our own end users, we choose San Francisco, which is the nearest region to us. `sfo1` is not available at the moment, so we can use `sfo2` or `sfo3`.
+![](./images/Pasted%20image%2020240926214757.png)
 
-![[./images/Pasted image 20240926214757.png]]
 
-`--ssh-keys` is the tag referring the SSH key you want to use to connect the droplet, add SSH ID behind.
-`--user-data-file`  is the tag referring the yaml file you want to use to configure your new droplets, add the file path of your yaml file behind.
-`--wait` Tells `doctl` to wait for the Droplets to finish deployment before accepting new commands. Add 
-`new-droplet-name1` add the new droplet names to the end of the command line. If you want to create multiple droplets just add many different droplet names behind.
+- `--ssh-keys` is the tag referring the SSH key you want to use to connect the droplet, add SSH ID behind.
+- `--user-data-file`  is the tag referring the yaml file you want to use to configure your new droplets, add the file path of your yaml file behind.
+- `--wait` Tells `doctl` to wait for the Droplets to finish deployment before accepting new commands. Add 
+- `new-droplet-name1` add the new droplet names to the end of the command line. If you want to create multiple droplets just add many different droplet names behind.
 
 # Create a config file to automate build the connection to the new droplet
-[reference](https://docs.digitalocean.com/products/droplets/how-to/automate-setup-with-cloud-init/)
-
 1. `cd` to .ssh folder
 2. Create a config file by using neovim `nvim`
 ```bash
