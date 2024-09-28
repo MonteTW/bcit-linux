@@ -6,6 +6,7 @@ Since you already created an account and an arch droplet. This instruction is to
 3. SSH keys
 4. Cloud-init yaml file
 5. config file to connect to your droplet easily
+   
 # Create an API Token[^3] [^4]
 What is API token and why?
 API token is a string of key to help DigitalOcean authenticate your device and allow the device to get the authority to control your account.
@@ -45,7 +46,8 @@ sudo pacman -Sy doctl
 ```
 - `doctl auth init` Initialize `doctl` to use a specific account
 - After the command you will be asked to type in your DigitalOcean API token.
-  
+
+
 4. Pass in the token string you saved from Digitalocean when prompted by `doctl auth init`
    
 5. Restart your terminal.
@@ -60,6 +62,8 @@ sudo pacman -Sy doctl
 > **Note:** Output should see a table like below
 > ![](./images/Pasted%20image%2020240923232532.png) 
 
+
+
 5. To confirm the connection, can create a test droplet as follow
    ```bash
    doctl compute droplet create --region sfo3 --image aapanel --size s-1vcpu-1gb droplet-test
@@ -69,10 +73,12 @@ sudo pacman -Sy doctl
 > **Note:** Output should see a table like below
 > ![](./images/Pasted%20image%2020240926202709.png)
 
+
 6. Check if the droplet created successfully and copy the ID of the test droplet
    ```bash
    doctl compute droplet list
 	```
+
 
 7. Delete the test droplet
       ```bash
@@ -97,6 +103,7 @@ ssh-keygen -t ed25519 -f ~/.ssh/do-key -C "your email address"
 - `-f ~/.ssh/your-key-name` is saying the name and the path of your key should be.
 - `-C "your email address"` changes the comment of the SSH key, the comment will be included in the key.
 
+
 1. Get your public key[^13]
 ```bash
 cat ~/.ssh/do-key.pub 
@@ -104,6 +111,7 @@ cat ~/.ssh/do-key.pub
 # or if you store your ssh key in another folder please change the path
 ```
 - `cat`: concatenate files and print on the standard output
+
 
 2. Copy the public key printed on screen including your email address
 
@@ -115,6 +123,7 @@ doctl compute ssh-key import do-key --public-key-file ~/.ssh/do-key.pub
 - `doctl compute ssh-key import do-key` Import an SSH key from your computer to your account. 
 - `--public-key-file` the flag is required to refer the public key file. 
 - `~/.ssh/do-key.pub` the path of your public key file. 
+
 
 4. Check the import succeeded[^6] [^14]
 ```bash
@@ -131,10 +140,12 @@ Cloud-init is an industry standard tool that allows you to automate the initiali
 sudo pacman -Sy neovim
 ```
 
+
 2. Create a cloud-config.yaml file in the folder you want (recommend to store in .ssh folder)[^17]
 ```bash
 nvim your-file-name.yaml # please change the name
 ```
+
 
 3. Paste in the following context into your yaml file[^8] [^15] [^7]
 ```bash
@@ -177,6 +188,7 @@ disable_root: true
 
 > **Note:** 
 > Please watch out the space of your yaml file, it might cause an error if there's any extra space in the file
+
 # Create a Droplet 
 Since we have all the materials ready, we can now create our new droplets by apply all the outputs from former steps.
 
@@ -188,6 +200,8 @@ doctl compute image list
 > **Note:** 
 > Find the image we uploaded for arch linux and copy the ID, which is **165086895** in this case
 > ![](./images/Pasted%20image%2020240924185154.png)
+
+
 2. Confirm the ID of your public key[^12]
 ```bash
 doctl compute ssh-key list
@@ -195,6 +209,7 @@ doctl compute ssh-key list
 > **Note:** 
 > Find your public key uploaded before and going to use, which is **43494133** in this case
 > ![](./images/Pasted%20image%2020240924192047.png)
+
 
 3. Create a droplet[^7] [^9]
 ```bash
@@ -219,6 +234,7 @@ doctl compute droplet create --image <your image ID> --size s-1vcpu-1gb-amd --re
 nvim config
 ```
 
+
 3. Copy and paste the config content[^16][^5]
 ```bash
 Host <name-anything> # change it to the name you want to call
@@ -239,6 +255,8 @@ Host <name-anything> # change it to the name you want to call
 - `User` The username to be used for the connection. It should be `arch` which is the same as your Digitalocean username.
 - `StrictHostKeyChecking` This option decides whether SSH will automatically add hosts to the `~/.ssh/known_hosts` file. By default, this is set to “ask” meaning that it will warn you if the Host Key received from the remote server does not match the one found in the `known_hosts` file. If you are constantly connecting to a large number of ephemeral hosts (such as testing servers), you may want to turn this to “no”. SSH will then automatically add any hosts to the file.
 - - `UserKnownHostsFile`This option specifies the location where SSH will store the information about hosts it has connected to. Usually you do not have to worry about this setting, but you may wish to set this to `/dev/null` so they are discarded if you have turned off strict host checking above.
+
+
 4. Test the connection 
 ```bash
 ssh name-anything # name-anything is the one you named in the config file
